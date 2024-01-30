@@ -1,2 +1,2 @@
 # wc-multi-shipping
-WooCommerce Adon to allow multiple shipping for an order
+WooCommerce Addon to allow multiple shipping for an order
