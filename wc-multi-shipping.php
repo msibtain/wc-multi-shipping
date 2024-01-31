@@ -17,6 +17,8 @@ class WC_Multi_Shipping
         add_action( 'init', [$this, 'es_wc_session_enabler'] );
         add_action( 'woocommerce_cart_calculate_fees', [$this, 'es_add_all_shipping'], 20, 1 );
         //add_filter( 'woocommerce_cart_needs_shipping', [$this, 'es_cart_needs_shipping'] );
+        add_filter( 'woocommerce_cart_ready_to_calc_shipping', [$this, 'es_cart_needs_shipping_v2'] );
+        
         add_action( 'wp_footer', [$this, 'es_footer_code'] );
     }
 
@@ -31,10 +33,13 @@ class WC_Multi_Shipping
 
     function es_cart_needs_shipping($needs_shipping)
     {
-        
         $needs_shipping = false;
-
         return $needs_shipping;
+    }
+
+    function es_cart_needs_shipping_v2($needs_shipping)
+    {
+        if( is_cart() ) { return false; } return $show_shipping;
     }
 
     function es_add_all_shipping($cart)
